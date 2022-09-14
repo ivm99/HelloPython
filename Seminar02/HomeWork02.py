@@ -102,7 +102,7 @@ import time
 
 def random(min, max):
     range = max - min
-    randomNumber = int(time.time()*1000)
+    randomNumber = int(time.time_ns()*1000)
     randomNumber %= range
     randomNumber += min
     return randomNumber
@@ -115,5 +115,4 @@ while True:
         break
     except:
         print('Введенное значение не является числом!')
-
 
