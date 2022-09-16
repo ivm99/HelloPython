@@ -189,11 +189,6 @@ with open('file2.txt', 'w') as data:
         
     
     
-    
-
-
-
-# with open('initial_file.txt', 'r') as data:
-#         text = data.read()
+   
 
 
