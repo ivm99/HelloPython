@@ -189,11 +189,6 @@ print(decrypt_text(text,m))
         
     
     
-    
-
-
-
-# with open('initial_file.txt', 'r') as data:
-#         text = data.read()
+   
 
 
