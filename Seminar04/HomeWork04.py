@@ -89,48 +89,48 @@
 # Ваша задача - написать функцию, которая записывает в файл шифрованный текст, а также функцию, которая спрашивает ключ, считывает текст и дешифровывает его.
 
 
-# def encrypt_text(user_text:str, n:int):
-#     original = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ" 
-#     new = original[-n*2:]+original[:-n*2]
-#     new_text = ""
-#     index = 0
-#     for i in user_text:
-#         for j in original:
-#             if i == j:
-#                 index = original.index(j)
-#         if i!=" " and i!="." and i!="," and i!="!" and i!="?" and i!= "-" and not i.isdigit():
-#             i = i.replace(i,new[index])
-#         new_text += i
-#     return(new_text)
+def encrypt_text(user_text:str, n:int):
+    original = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ" 
+    new = original[-n*2:]+original[:-n*2]
+    new_text = ""
+    index = 0
+    for i in user_text:
+        for j in original:
+            if i == j:
+                index = original.index(i)
+        if i!=" " and i!="." and i!="," and i!="!" and i!="?" and i!= "-" and not i.isdigit():
+            i = i.replace(i,new[index])
+        new_text += i
+    return(new_text)
 
-# def decrypt_text(text:str, n:int):
-#     original = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ" 
-#     new = str(original[-n*2:]+original[:-n*2])
-#     new_text = ""
-#     index = 0
-#     for i in text:
-#         for j in new:
-#             if i == j:
-#                 index = new.index(j)
-#         if i!=" " and i!="." and i!="," and i!="!" and i!="?" and i!= "-" and not i.isdigit():
-#             i = i.replace(i,original[index])
-#         new_text += i
-#     return(new_text)
+def decrypt_text(text:str, n:int):
+    original = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ" 
+    new = str(original[-n*2:]+original[:-n*2])
+    new_text = ""
+    index = 0
+    for i in text:
+        for j in new:
+            if i == j:
+                index = new.index(j)
+        if i!=" " and i!="." and i!="," and i!="!" and i!="?" and i!= "-" and not i.isdigit():
+            i = i.replace(i,original[index])
+        new_text += i
+    return(new_text)
 
-# user_text = input('Введите текст для шифрования: ') 
-# n=int(input('Введите ключ шифрования (число): '))
+user_text = input('Введите текст для шифрования: ') 
+n=int(input('Введите ключ шифрования (число): '))%26
 
-# new_text = encrypt_text(user_text, n)
-# print(new_text)
-# with open('encrypted_file.txt', 'w') as data:
-#     data.write(new_text)
+new_text = encrypt_text(user_text, n)
+print(new_text)
+with open('encrypted_file.txt', 'w') as data:
+    data.write(new_text)
     
-# m = int(input('Введите ключ дешифрования (число): '))
+m = int(input('Введите ключ дешифрования (число): '))%26
 
-# with open('encrypted_file.txt', 'r') as data:
-#     text = data.read()
+with open('encrypted_file.txt', 'r') as data:
+    text = data.read()
 
-# print(decrypt_text(text,m))
+print(decrypt_text(text,m))
 
 ##################################################################################################################################################
 # 5 - Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных. Входные и выходные данные хранятся в отдельных текстовых файлах.
@@ -139,53 +139,53 @@
 # файл второй:
 # сжатый текст.
 
-def RLE_compression(user_text):
-    new_list=[]
-    count = 1
-    i = 1
-    while i < len(user_text):
-        if user_text[i-1] == user_text[i]:
-            count +=1
-        else:
-            count = str(count)
-            char = user_text[i-1]+count
-            new_list.append(char)
-            count = 1
-        i+=1 
-    i=0
-    count = 1
-    while user_text[-1-i] == user_text[-2-i]:
-        count+=1
-        i+=1
-    count = str(count)
-    char = user_text[-1]+count
-    new_list.append(char)  
-    return new_list
+# def RLE_compression(user_text):
+#     new_list=[]
+#     count = 1
+#     i = 1
+#     while i < len(user_text):
+#         if user_text[i-1] == user_text[i]:
+#             count +=1
+#         else:
+#             count = str(count)
+#             char = user_text[i-1]+count
+#             new_list.append(char)
+#             count = 1
+#         i+=1 
+#     i=0
+#     count = 1
+#     while user_text[-1-i] == user_text[-2-i]:
+#         count+=1
+#         i+=1
+#     count = str(count)
+#     char = user_text[-1]+count
+#     new_list.append(char)  
+#     return new_list
     
-def RLE_restore(compressed_text):
-    text = ""
-    print(compressed_text)
-    new_list = []
-    i=0
-    while i < len(compressed_text):
-        new_list.append(compressed_text[i][1:])
-        new_list[i] = int(new_list[i])
-        i+=1
-    for index, element  in enumerate(compressed_text):
-        element = element[:1]
-        j=0
-        while j < new_list[index]:
-            text = text + element
-            j+=1
-    return(text)
+# def RLE_restore(compressed_text):
+#     text = ""
+#     print(compressed_text)
+#     new_list = []
+#     i=0
+#     while i < len(compressed_text):
+#         new_list.append(compressed_text[i][1:])
+#         new_list[i] = int(new_list[i])
+#         i+=1
+#     for index, element  in enumerate(compressed_text):
+#         element = element[:1]
+#         j=0
+#         while j < new_list[index]:
+#             text = text + element
+#             j+=1
+#     return(text)
         
-with open('file1.txt', 'r') as data:
-    us_text = data.read()
+# with open('file1.txt', 'r') as data:
+#     us_text = data.read()
         
-text = str(RLE_compression(us_text))
+# text = str(RLE_compression(us_text))
 
-with open('file2.txt', 'w') as data:
-    data.write(text)
+# with open('file2.txt', 'w') as data:
+#     data.write(text)
         
     
     
